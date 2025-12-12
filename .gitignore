@@ -1,0 +1,36 @@
+# Carpetas generadas por Unity (NO SUBIR)
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+
+# Archivos temporales de autogeneración
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE (Visual Studio / VS Code / Rider)
+.vs/
+.idea/
+*.csproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+
+# Builds y temporales
+ExportedObj/
+.consulo/
