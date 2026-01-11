@@ -36,25 +36,31 @@ public class PlayerController : NetworkBehaviour
             return;
         }
 
-        // CORRECCIÓN AQUÍ: Asignamos a la variable global _mainCamera
+        // 1. Configurar Cámara (Lo que ya tenías)
         _mainCamera = Camera.main;
-
-        // A partir de aquí usamos _mainCamera en lugar de mainCam
         if (_mainCamera != null)
         {
-            // Le añadimos el script de seguimiento si no lo tiene
             CameraFollow camScript = _mainCamera.GetComponent<CameraFollow>();
             if (camScript == null) camScript = _mainCamera.gameObject.AddComponent<CameraFollow>();
-
-            // LE DECIMOS QUE ME SIGA A MÍ
             camScript.target = this.transform;
-
-            // Configuramos el ángulo
             camScript.offset = new Vector3(0, 12, -7);
+        }
+
+        // --- NUEVO: TELETRANSPORTE AL SPAWN POINT ---
+        // Buscamos el objeto por su nombre en la escena
+        GameObject spawnPoint = GameObject.Find("SpawnPoint");
+
+        if (spawnPoint != null)
+        {
+            // TRUCO: Hay que desactivar el CharacterController un milisegundo para teletransportarlo
+            _cc.enabled = false;
+            transform.position = spawnPoint.transform.position;
+            transform.rotation = spawnPoint.transform.rotation;
+            _cc.enabled = true;
         }
         else
         {
-            Debug.LogError("¡No encontré una Cámara etiquetada como MainCamera en la escena!");
+            Debug.LogWarning("¡No encontré el objeto 'SpawnPoint' en la escena!");
         }
     }
 
